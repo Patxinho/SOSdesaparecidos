@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SOSdesaparecidos.Views.News.NewsView"
+             xmlns:templates="clr-namespace:SOSdesaparecidos.Views.News.Templates;assembly=SOSdesaparecidos"
+             Title="Noticias">
+    <ListView 
+    SeparatorVisibility="None"
+    SeparatorColor="#CC000000"
+    ItemsSource="{Binding News}"
+    SelectedItem="{Binding SelectedNew, Mode=TwoWay}"
+    RowHeight="240"
+    HasUnevenRows="false">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <templates:NewItemTemplate/>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

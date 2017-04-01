@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SOSdesaparecidos.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!-- EXPORTED COLORS -->
+            <Color x:Key="AccentColor">#1A75CE</Color>
+            <Color x:Key="InverseTextColor">White</Color>
+
+            <!-- COLORS --> 
+            <Color x:Key="BrandColor">#1A75CE</Color>
+            <Color x:Key="BrandColorLight">#4c9be8</Color>
+            <Color x:Key="BrandColorLighter">#90c1f1</Color>
+            <Color x:Key="BrandColorDark">#145ba1</Color>
+            <Color x:Key="BrandColorDarker">#0c355d</Color>
+            <Color x:Key="MainMenuBackgroundColor">#F0F0F0</Color>
+            <Color x:Key="MainMenuSeparatorColor">#253642</Color>
+            <Color x:Key="TranslucidBlack">#44000000</Color>
+            <Color x:Key="WhiteColor">#FFFFFF</Color>
+            <Color x:Key="ToolbarColor">#3F9DDA</Color>
+
+            <!-- BASE COLORS AND UNITS VALUES -->
+            <Color x:Key="BaseTextColor">#37474f</Color>
+            <Color x:Key="CoureTextColor">#003049</Color>
+
+            <x:Double x:Key="BaseFontSize">16</x:Double>
+            <x:Double x:Key="BaseButtonHeight">44</x:Double>
+            <x:Double x:Key="BaseButtonBorderRadius">22</x:Double>
+
+            <x:Double x:Key="MainMenuLabelFontsize">18</x:Double>
+            <x:Double x:Key="MainMenuIconFontsize">20</x:Double>
+            <x:Double x:Key="MainMenuHeaderFontsize">18</x:Double>
+            <x:Double x:Key="MainMenuLabelTranslationX">10</x:Double>
+            <x:Double x:Key="MainMenuChevronRightFontsize">24</x:Double>
+            <x:Double x:Key="MainMenuIconWidthRequest">22</x:Double>
+
+            <!-- CONVERTERS -->
+            <!--<customConverters:CategoryImageConverter x:Key="CategoryImageConverter" />
+            <customConverters:CountToHeightConverter x:Key="CountToHeightConverter" />
+            <customConverters:CourseImageConverter x:Key="CourseImageConverter" />
+            <customConverters:DateTimeConverter x:Key="DateTimeConverter" />
+            <customConverters:IntToBoolConverter x:Key="IntToBoolConverter" />
+            <customConverters:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <customConverters:InverseIntToBoolConverter x:Key="InverseIntToBoolConverter" />
+            <customConverters:NoImageConverter x:Key="NoImageConverter" />
+            <customConverters:StringToColorConverter x:Key="StringToColorConverter" />
+            <customConverters:ToUpperConverter x:Key="ToUpperConverter" />
+            <customConverters:TutorImageConverter x:Key="TutorImageConverter" />
+            <customConverters:StringToHtmlWebViewSourceConverter x:Key="StringToHtmlWebViewSourceConverter" />-->
+
+            <!-- STATIC IMAGES -->
+            <!--<FileImageSource x:Key="HamburguerIcon">hamburguer_icon.png</FileImageSource>-->
+
+            <!-- MAIN MENU STYLES -->
+            <Style x:Key="MainMenuStyle" TargetType="ContentPage" >
+                <Setter Property="BackgroundColor" Value="{StaticResource MainMenuBackgroundColor}"/>
+            </Style>
+
+            <Style x:Key="MainMenuIconStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="{StaticResource MainMenuIconFontsize}"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            </Style>
+
+            <Style x:Key="MainMenu_Label_Style" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TranslationX" Value="{StaticResource MainMenuLabelTranslationX}"/>
+                <Setter Property="FontSize" Value="{StaticResource MainMenuLabelFontsize}"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            </Style>
+
+            <Style x:Key="MainMenuListViewStyle" TargetType="ListView">
+                <Setter Property="BackgroundColor" Value="{StaticResource MainMenuBackgroundColor}"/>
+                <Setter Property="SeparatorVisibility" Value="Default" />
+                <Setter Property="SeparatorColor" Value="{StaticResource MainMenuSeparatorColor}" />
+                <Setter Property="RowHeight" Value="44"/>
+                <Setter Property="Margin" Value="0, 48, 0, 0"/>
+            </Style>
+
+            <!-- COURSES -->
+            <Style x:Key="CourseDetailGridBannerStyle" TargetType="StackLayout">
+                <Setter Property="HeightRequest" Value="80" />
+            </Style>
+
+            <!-- NEWS -->
+            <Style x:Key="Horizontal1ptLineStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="BackgroundColor" Value="#eee" />
+            </Style>
+
+            <!-- TUTOR -->
+            <Style x:Key="BrandNameOrnamentStyle" TargetType="BoxView" >
+                <Setter Property="HeightRequest" Value="4"/>
+                <Setter Property="VerticalOptions" Value="End"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="WidthRequest" Value="40" />
+                <Setter Property="BackgroundColor" Value="{StaticResource BrandColor}" />
+            </Style>
+
+            <Style x:Key="ToolbarStyle" TargetType="Grid">
+                <Setter Property="HeightRequest" Value="60"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

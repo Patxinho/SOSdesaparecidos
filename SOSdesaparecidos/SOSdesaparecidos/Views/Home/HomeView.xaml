@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SOSdesaparecidos.Views.Home.HomeView"
+              xmlns:carousel="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView" 
+            Title="SOSDesaparecidos">
+  <ScrollView>
+    <StackLayout Padding="10">
+            <Label Text="Menores desaparecidos" FontSize="30"/>
+            <carousel:CarouselView  ItemsSource="{Binding DesaparecidosMenores}"  HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="FillAndExpand"  HeightRequest="200" >
+                <carousel:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                    <StackLayout    >
+                            <Image Source="{Binding Image}" HeightRequest="200"></Image>
+                    </StackLayout>
+                </DataTemplate>
+                </carousel:CarouselView.ItemTemplate>
+            </carousel:CarouselView>
+
+            <Label Text="Mayores desaparecidos" FontSize="30"/>
+            <carousel:CarouselView  ItemsSource="{Binding DesaparecidosMayores}"  HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="FillAndExpand"  HeightRequest="200" >
+                <carousel:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout    >
+                            <Image Source="{Binding Image}" HeightRequest="200"></Image>
+                        </StackLayout>
+                    </DataTemplate>
+                </carousel:CarouselView.ItemTemplate>
+            </carousel:CarouselView>
+
+
+            <Label Text="Adultos desaparecidos" FontSize="30"/>
+            <carousel:CarouselView  ItemsSource="{Binding DesaparecidosAdultos}"  HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="FillAndExpand"  HeightRequest="200" >
+                <carousel:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout    >
+                            <Image Source="{Binding Image}" HeightRequest="200"></Image>
+                        </StackLayout>
+                    </DataTemplate>
+                </carousel:CarouselView.ItemTemplate>
+            </carousel:CarouselView>
+        </StackLayout>
+  </ScrollView>
+</ContentPage>
