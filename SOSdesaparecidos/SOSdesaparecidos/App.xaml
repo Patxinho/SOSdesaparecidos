@@ -21,6 +21,7 @@
             <Color x:Key="TranslucidBlack">#44000000</Color>
             <Color x:Key="WhiteColor">#FFFFFF</Color>
             <Color x:Key="ToolbarColor">#3F9DDA</Color>
+            <OnPlatform x:TypeArguments="Color" Android="#ECECEC" iOS="#C8C7CC" WinPhone="#C8C7CC" x:Key="Divider"/>
 
             <!-- BASE COLORS AND UNITS VALUES -->
             <Color x:Key="BaseTextColor">#37474f</Color>

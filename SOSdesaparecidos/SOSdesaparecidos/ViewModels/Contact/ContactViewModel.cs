@@ -9,9 +9,11 @@ namespace SOSdesaparecidos.ViewModels.Contact
 {
     public class ContactViewModel : ViewModelBase
     {
-        public ContactViewModel()
-        {
+        public const string ContactUrl = "http://sosdesaparecidos.es/contacto";
 
+        public string ContactPageURL
+        {
+            get { return ContactUrl; }
         }
     }
 }

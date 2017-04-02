@@ -1,47 +1,131 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SOSdesaparecidos.Controls;assembly=SOSdesaparecidos"
              x:Class="SOSdesaparecidos.Views.Home.HomeView"
               xmlns:carousel="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView" 
             Title="SOSDesaparecidos">
   <ScrollView>
     <StackLayout Padding="10">
-            <Label Text="Menores desaparecidos" FontSize="30"/>
-            <carousel:CarouselView  ItemsSource="{Binding DesaparecidosMenores}"  HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="FillAndExpand"  HeightRequest="200" >
-                <carousel:CarouselView.ItemTemplate>
-                    <DataTemplate>
-                    <StackLayout    >
-                            <Image Source="{Binding Image}" HeightRequest="200"></Image>
+            <!-- Menores Desaparecidos-->
+            <local:CardView>
+                <StackLayout Spacing="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="34"/>
+                        </Grid.ColumnDefinitions>
+                        <local:LabelSection Text="Menores Desaparecidos"/>
+                    </Grid>
+                    <local:HeaderDivider/>
+                    <StackLayout IsVisible="{Binding IsBusy}" 
+                                 HorizontalOptions="FillAndExpand" 
+                                 VerticalOptions="Center" 
+                                  BackgroundColor="White"
+                                 >
+                        <ActivityIndicator IsRunning="{Binding IsBusy}">
+                            <ActivityIndicator.Color>
+                                <OnPlatform x:TypeArguments="Color" Android="{StaticResource AccentColor}"/>
+                            </ActivityIndicator.Color>
+                        </ActivityIndicator>
+                        <Label Text="Cargando Menores Desaparecidos..." 
+                               HorizontalOptions="Center" 
+                              />
                     </StackLayout>
-                </DataTemplate>
-                </carousel:CarouselView.ItemTemplate>
-            </carousel:CarouselView>
+                    <carousel:CarouselView  ItemsSource="{Binding DesaparecidosMenores}"   HeightRequest="200" IsVisible="{Binding IsNotBusy}" >
+                        <carousel:CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout    >
+                                    <Image Source="{Binding Image}" HeightRequest="200"></Image>
+                                </StackLayout>
+                            </DataTemplate>
+                        </carousel:CarouselView.ItemTemplate>
+                    </carousel:CarouselView>
+                    
+                    <local:FooterDivider/>
+                </StackLayout>
+            </local:CardView>
 
-            <Label Text="Mayores desaparecidos" FontSize="30"/>
-            <carousel:CarouselView  ItemsSource="{Binding DesaparecidosMayores}"  HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="FillAndExpand"  HeightRequest="200" >
-                <carousel:CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout    >
-                            <Image Source="{Binding Image}" HeightRequest="200"></Image>
-                        </StackLayout>
-                    </DataTemplate>
-                </carousel:CarouselView.ItemTemplate>
-            </carousel:CarouselView>
+            <!-- Mayores Desaparecidos-->
+            <local:CardView>
+                <StackLayout Spacing="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="34"/>
+                        </Grid.ColumnDefinitions>
+                        <local:LabelSection Text="Mayores Desaparecidos"/>
+                    </Grid>
+                    <local:HeaderDivider/>
+                    <StackLayout IsVisible="{Binding IsBusy}" 
+                                 HorizontalOptions="FillAndExpand" 
+                                 VerticalOptions="Center" 
+                                  BackgroundColor="White"
+                                 >
+                        <ActivityIndicator IsRunning="{Binding IsBusy}">
+                            <ActivityIndicator.Color>
+                                <OnPlatform x:TypeArguments="Color" Android="{StaticResource AccentColor}"/>
+                            </ActivityIndicator.Color>
+                        </ActivityIndicator>
+                        <Label Text="Cargando Mayores Desaparecidos..." 
+                               HorizontalOptions="Center" 
+                              />
+                    </StackLayout>
+                    <carousel:CarouselView  ItemsSource="{Binding DesaparecidosMayores}"    HeightRequest="200" IsVisible="{Binding IsNotBusy}" >
+                        <carousel:CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout    >
+                                    <Image Source="{Binding Image}" HeightRequest="200"></Image>
+                                </StackLayout>
+                            </DataTemplate>
+                        </carousel:CarouselView.ItemTemplate>
+                    </carousel:CarouselView>
+
+                    <local:FooterDivider/>
+                </StackLayout>
+            </local:CardView>
+
+            <!-- Adultos Desaparecidos-->
+            <local:CardView>
+                <StackLayout Spacing="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="34"/>
+                        </Grid.ColumnDefinitions>
+                        <local:LabelSection Text="Adultos Desaparecidos"/>
+                    </Grid>
+                    <local:HeaderDivider/>
+                    <StackLayout IsVisible="{Binding IsBusy}" 
+                                 HorizontalOptions="FillAndExpand" 
+                                 VerticalOptions="Center" 
+                                  BackgroundColor="White"
+                                 >
+                        <ActivityIndicator IsRunning="{Binding IsBusy}">
+                            <ActivityIndicator.Color>
+                                <OnPlatform x:TypeArguments="Color" Android="{StaticResource AccentColor}"/>
+                            </ActivityIndicator.Color>
+                        </ActivityIndicator>
+                        <Label Text="Cargando Adultos Desaparecidos..." 
+                               HorizontalOptions="Center" 
+                              />
+                    </StackLayout>
+                    <carousel:CarouselView  ItemsSource="{Binding DesaparecidosAdultos}"   HeightRequest="200" IsVisible="{Binding IsNotBusy}" >
+                        <carousel:CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout    >
+                                    <Image Source="{Binding Image}" HeightRequest="200"></Image>
+                                </StackLayout>
+                            </DataTemplate>
+                        </carousel:CarouselView.ItemTemplate>
+                    </carousel:CarouselView>
+
+                    <local:FooterDivider/>
+                </StackLayout>
+            </local:CardView>
 
 
-            <Label Text="Adultos desaparecidos" FontSize="30"/>
-            <carousel:CarouselView  ItemsSource="{Binding DesaparecidosAdultos}"  HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="FillAndExpand"  HeightRequest="200" >
-                <carousel:CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout    >
-                            <Image Source="{Binding Image}" HeightRequest="200"></Image>
-                        </StackLayout>
-                    </DataTemplate>
-                </carousel:CarouselView.ItemTemplate>
-            </carousel:CarouselView>
+          
         </StackLayout>
   </ScrollView>
 </ContentPage>

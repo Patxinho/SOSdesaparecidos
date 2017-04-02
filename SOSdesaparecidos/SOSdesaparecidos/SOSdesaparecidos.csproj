@@ -38,6 +38,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CardView.cs" />
+    <Compile Include="Controls\FooterDivider.xaml.cs">
+      <DependentUpon>FooterDivider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HeaderDivider.xaml.cs">
+      <DependentUpon>HeaderDivider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LabelSection.xaml.cs">
+      <DependentUpon>LabelSection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\OnCustomPlatform.cs" />
     <Compile Include="Helpers\RssHelper.cs" />
     <Compile Include="Models\Desaparecido.cs" />
@@ -48,6 +58,8 @@
     <Compile Include="Services\Menu\MenuService.cs" />
     <Compile Include="Services\Navigation\INavigationService.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
+    <Compile Include="Services\ParseHtml\IParseHtmlService.cs" />
+    <Compile Include="Services\ParseHtml\ParseHtmlService.cs" />
     <Compile Include="Services\Rss\IRssService.cs" />
     <Compile Include="Services\Rss\RssService.cs" />
     <Compile Include="ViewModels\Base\DelegateCommand.cs" />
@@ -99,6 +111,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="DLToolkit.Forms.Controls.FlowListView, Version=1.0.6237.31064, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DLToolkit.Forms.Controls.FlowListView.2.0.4\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\DLToolkit.Forms.Controls.FlowListView.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HtmlAgilityPack.1.4.9.5\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -203,6 +218,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\News\NewsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\HeaderDivider.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\FooterDivider.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\LabelSection.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

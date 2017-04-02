@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SOSdesaparecidos.Views.Main.MainView"
              xmlns:main="clr-namespace:SOSdesaparecidos.Views.Main;assembly=SOSdesaparecidos"
-              IsPresented="False"
+              IsPresented="False" 
                   Title="SOS">
     <MasterDetailPage.Master>
         <main:MainMenu BindingContext="{Binding MenuViewModel}" />
