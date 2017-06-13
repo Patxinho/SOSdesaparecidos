@@ -1,10 +1,15 @@
 ﻿{
   "dependencies": {
     "Microsoft.Azure.Mobile.Analytics": "0.7.0",
+    "Microsoft.Azure.Mobile.Client": "3.1.0",
+    "Microsoft.Azure.Mobile.Client.SQLiteStore": "3.1.0",
     "Microsoft.Azure.Mobile.Crashes": "0.7.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.1",
     "Newtonsoft.Json": "9.0.1",
     "Refractored.MvvmHelpers": "1.2.2",
+    "sameerIOTApps.Plugin.SecureStorage": "1.2.2",
+    "Xam.Plugin.Connectivity": "2.3.0",
+    "Xamarin.FFImageLoading.Forms": "2.2.10-pre-408",
     "Xamarin.Forms": "2.3.4.214-pre5",
     "Xamarin.Forms.CarouselView": "2.3.0-pre2"
   },

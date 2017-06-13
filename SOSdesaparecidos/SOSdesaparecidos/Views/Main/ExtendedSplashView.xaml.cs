@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 
 namespace SOSdesaparecidos.Views.Main
 {
-
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ExtendedSplashView : ContentPage
     {
         public ExtendedSplashView()

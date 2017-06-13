@@ -1,5 +1,6 @@
 ﻿using SOSdesaparecidos.ViewModels.Base;
 using SOSdesaparecidos.ViewModels.Home;
+using SOSdesaparecidos.ViewModels.News;
 using System.Threading.Tasks;
 
 namespace SOSdesaparecidos.ViewModels.Main
@@ -32,7 +33,7 @@ namespace SOSdesaparecidos.ViewModels.Main
             return Task.WhenAll
                 (
                     _menuViewModel.InitializeAsync(navigationData),
-                    NavigationService.NavigateToAsync<HomeViewModel>()
+                    NavigationService.NavigateToAsync<NewsViewModel>()
                 );
         }
     }

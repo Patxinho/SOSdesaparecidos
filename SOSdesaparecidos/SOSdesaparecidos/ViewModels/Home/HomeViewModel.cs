@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using SOSdesaparecidos.Services.Azure;
 
 namespace SOSdesaparecidos.ViewModels.Home
 {
@@ -19,10 +20,12 @@ namespace SOSdesaparecidos.ViewModels.Home
         private ObservableCollection<Desaparecido> _desaparecidosMayores;
         private ObservableCollection<Desaparecido> _desaparecidosAdultos;
         private IParseHtmlService _parseHtml;
+        private IMobileService _mobileService;
 
-        public HomeViewModel(IParseHtmlService parseHtml)
+        public HomeViewModel(IParseHtmlService parseHtml, IMobileService mobileService)
         {
             _parseHtml = parseHtml;
+            _mobileService = mobileService;
         }
 
         public ObservableCollection<Desaparecido> DesaparecidosMenores
@@ -63,6 +66,7 @@ namespace SOSdesaparecidos.ViewModels.Home
             DesaparecidosMenores = await _parseHtml.GetMainMissing("Menores desaparecidos");
             DesaparecidosMayores = await _parseHtml.GetMainMissing("Mayores desaparecidos");
             DesaparecidosAdultos = await _parseHtml.GetMainMissing("Adultos desaparecidos");
+            var result = await _mobileService.ReadItemsAsync();
             IsBusy = false;
 
             //Desaparecidos = new ObservableCollection<Desaparecido>(result);

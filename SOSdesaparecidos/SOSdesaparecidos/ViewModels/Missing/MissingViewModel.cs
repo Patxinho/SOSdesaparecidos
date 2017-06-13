@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace SOSdesaparecidos.ViewModels.Missing
 {
@@ -14,8 +16,12 @@ namespace SOSdesaparecidos.ViewModels.Missing
     {
 
         private ObservableCollection<Desaparecido> _desaparecidosMenores;
-        private IList<String> _municipios;
+        private ObservableCollection<Municipio> _municipios;
         private IParseHtmlService _parseHtml;
+        private Desaparecido _miss;
+        private Municipio _municipio;
+        
+        
         public MissingViewModel(IParseHtmlService parseHtml)
         {
             _parseHtml = parseHtml;
@@ -32,7 +38,7 @@ namespace SOSdesaparecidos.ViewModels.Missing
             }
         }
 
-        public IList<String> Municipios
+        public ObservableCollection<Municipio> Municipios
         {
             get { return _municipios; }
             set
@@ -42,11 +48,38 @@ namespace SOSdesaparecidos.ViewModels.Missing
             }
         }
 
+        public Desaparecido Miss
+        {
+            get { return _miss; }
+            set
+            {
+                _miss = value;
+
+                if (_miss != null)
+                {
+                    NavigationService.NavigateToAsync<Missing.MissingDetailViewModel>();
+                }
+            }
+        }
+
+        public Municipio Muni
+        {
+            get { return _municipio; }
+            set
+            {
+                _municipio = value;
+
+               
+            }
+        }
+
+        public ICommand UpdateCommand => new Command(async () => await UpdateAsync());
+
         public override async Task InitializeAsync(object navigationData)
         {
 
             DesaparecidosMenores = new ObservableCollection<Desaparecido>();
-            Municipios = new List<String>();
+            Municipios = new ObservableCollection<Municipio>();
 
             IsBusy = true;
             DesaparecidosMenores = await _parseHtml.GetMainMissing("Menores desaparecidos");
@@ -55,5 +88,14 @@ namespace SOSdesaparecidos.ViewModels.Missing
 
             //Desaparecidos = new ObservableCollection<Desaparecido>(result);
         }
+
+        public async Task UpdateAsync()
+        {
+            IsBusy = true;
+            DesaparecidosMenores = new ObservableCollection<Desaparecido>();
+            DesaparecidosMenores = await _parseHtml.GetMunicipioMissing(_municipio.Url);
+            IsBusy = false;
+        }
+
     }
 }

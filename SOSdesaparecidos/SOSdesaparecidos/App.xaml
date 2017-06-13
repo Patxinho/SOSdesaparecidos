@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SOSdesaparecidos.App">
+             x:Class="SOSdesaparecidos.App"
+             xmlns:customConverters="clr-namespace:SOSdesaparecidos.Converter;assembly=SOSdesaparecidos">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -21,6 +22,7 @@
             <Color x:Key="TranslucidBlack">#44000000</Color>
             <Color x:Key="WhiteColor">#FFFFFF</Color>
             <Color x:Key="ToolbarColor">#3F9DDA</Color>
+            <Color x:Key="GrayColor">#CCCCCC</Color>
             <OnPlatform x:TypeArguments="Color" Android="#ECECEC" iOS="#C8C7CC" WinPhone="#C8C7CC" x:Key="Divider"/>
 
             <!-- BASE COLORS AND UNITS VALUES -->
@@ -39,6 +41,7 @@
             <x:Double x:Key="MainMenuIconWidthRequest">22</x:Double>
 
             <!-- CONVERTERS -->
+            <customConverters:IsNotBusyConverter x:Key="IsNotBusyConverter" />
             <!--<customConverters:CategoryImageConverter x:Key="CategoryImageConverter" />
             <customConverters:CountToHeightConverter x:Key="CountToHeightConverter" />
             <customConverters:CourseImageConverter x:Key="CourseImageConverter" />

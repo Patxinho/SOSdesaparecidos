@@ -26,6 +26,7 @@ namespace SOSdesaparecidos.Services.Navigation
             { typeof(HomeViewModel), typeof(HomeView) },
             { typeof(ContactViewModel), typeof(ContactView) },
             { typeof(MissingViewModel), typeof(MissingView) },
+            { typeof(MissingDetailViewModel), typeof(MissingDetailView) },
             { typeof(NewsViewModel), typeof(NewsView) }
            
         };
@@ -142,6 +143,7 @@ namespace SOSdesaparecidos.Services.Navigation
         {
             _mappings.Add(typeof(ContactViewModel), typeof(ContactView));
             _mappings.Add(typeof(MissingViewModel), typeof(MissingView));
+            _mappings.Add(typeof(MissingDetailViewModel), typeof(MissingDetailView));
             _mappings.Add(typeof(NewsViewModel), typeof(NewsView));
             _mappings.Add(typeof(HomeViewModel), typeof(HomeView));
             _mappings.Add(typeof(MainViewModel), typeof(MainView));

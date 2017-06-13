@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SOSdesaparecidos.Views.Missing.MissingView"
-             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              Title="Desaparecidos">
     <ContentPage.ToolbarItems>
         <ToolbarItem
@@ -22,25 +23,52 @@
             <StackLayout.BackgroundColor>
                 <OnPlatform x:TypeArguments="Color" Android="{StaticResource ToolbarColor}"/>
             </StackLayout.BackgroundColor>
-            <Picker x:Name="IndustryTypePicker"  HorizontalOptions="FillAndExpand" ItemsSource="{Binding Municipios}" Title="Selecciona una opción" TextColor="White" >
-                
+            <ActivityIndicator Color="{StaticResource BrandColor}" IsRunning="{Binding IsBusy}" />
+            <Picker x:Name="MunicipiosPicker" 
+                    HorizontalOptions="FillAndExpand" ItemsSource="{Binding Municipios}"  ItemDisplayBinding="{Binding Name}" 
+                    Title="Selecciona una localización" TextColor="Black" IsEnabled="{Binding IsBusy, Converter={StaticResource IsNotBusyConverter}}" SelectedItem="{Binding Muni}" >
+                <Picker.Behaviors>
+                    <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                        <behaviors:InvokeCommandAction Command="{Binding UpdateCommand}" />
+                    </behaviors:EventHandlerBehavior>
+                </Picker.Behaviors>
             </Picker>
         </StackLayout>
-        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
-            <flv:FlowListView FlowColumnCount="3" SeparatorVisibility="None" HasUnevenRows="True" HeightRequest="300"  AbsoluteLayout.LayoutFlags="All" 
-            AbsoluteLayout.LayoutBounds="0,0,1,1"
+
+        
+        <ListView Grid.Row="1"
 	           
-	            FlowItemsSource="{Binding DesaparecidosMenores}" >
+	            ItemsSource="{Binding DesaparecidosMenores}" SelectedItem="{Binding Miss, Mode=TwoWay}"> 
 
-                <flv:FlowListView.FlowColumnTemplate>
-                    <DataTemplate>
-                        <StackLayout  >
-                            <Image Source="{Binding Image}"  HeightRequest="200" ></Image>
-                        </StackLayout>
-                    </DataTemplate>
-                </flv:FlowListView.FlowColumnTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame
+            OutlineColor="{StaticResource GrayColor}"
+            BackgroundColor="{StaticResource WhiteColor}"
+            Margin="12">
+                            <Frame.HasShadow>
+                                <OnPlatform                       
+                    x:TypeArguments="x:Boolean"
+                    iOS="False"
+                    Android="True"
+                    WinPhone="False"/>
+                            </Frame.HasShadow>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="300" />
 
-            </flv:FlowListView>
-        </AbsoluteLayout>
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding Image}" Aspect="AspectFit"/>
+
+
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                        
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
     </Grid>
 </ContentPage>

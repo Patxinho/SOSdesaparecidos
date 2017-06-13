@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SOSdesaparecidos.ViewModels.Missing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,10 @@ namespace SOSdesaparecidos.Views.Missing
         public MissingView()
         {
             InitializeComponent();
+            
+
         }
+
+       
     }
 }

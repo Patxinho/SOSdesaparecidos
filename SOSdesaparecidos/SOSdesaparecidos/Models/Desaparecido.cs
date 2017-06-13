@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,8 @@ namespace SOSdesaparecidos.Models
         public string Id { get; set; }
 
         public string Image { get; set; }
+
+        [Version]
+        public string AzureVersion { get; set; }
     }
 }

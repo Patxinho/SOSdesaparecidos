@@ -12,6 +12,8 @@ namespace SOSdesaparecidos.Services.ParseHtml
     {
         Task<ObservableCollection<Desaparecido>> GetMainMissing(string missing);
 
-        Task<IList<string>> GetListMissing();
+        Task<ObservableCollection<Municipio>> GetListMissing();
+
+        Task<ObservableCollection<Desaparecido>> GetMunicipioMissing(string url);
     }
 }

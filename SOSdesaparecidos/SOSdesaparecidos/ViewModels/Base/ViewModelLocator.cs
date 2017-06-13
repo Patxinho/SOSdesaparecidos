@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Unity;
+using SOSdesaparecidos.Services.Azure;
 using SOSdesaparecidos.Services.Menu;
 using SOSdesaparecidos.Services.Navigation;
 using SOSdesaparecidos.Services.ParseHtml;
@@ -36,13 +37,15 @@ namespace SOSdesaparecidos.ViewModels.Base
             _unityContainer.RegisterType<HomeViewModel>();
             _unityContainer.RegisterType<MissingViewModel>();
             _unityContainer.RegisterType<ContactViewModel>();
-           
+            _unityContainer.RegisterType<MissingDetailViewModel>();
+
 
             // Services     
             _unityContainer.RegisterType<INavigationService, NavigationService>();
             _unityContainer.RegisterType<IMenuService, MenuService>();
             _unityContainer.RegisterType<IRssService, RssService>();
             _unityContainer.RegisterType<IParseHtmlService, ParseHtmlService>();
+            _unityContainer.RegisterType<IMobileService,MobileService>();
             //_unityContainer.RegisterType<ICourseService, CourseService>();
             //_unityContainer.RegisterType<ISqliteService, SqliteService>();
             //_unityContainer.RegisterType<IOpenUrlService, OpenUrlService>();

@@ -54,15 +54,15 @@ namespace SOSdesaparecidos.Services.ParseHtml
                     }
                 }
 
-
-
             }
             return Desaparecidos;
         }
 
-        public async Task<IList<string>> GetListMissing()
+
+
+        public async Task<ObservableCollection<Municipio>> GetListMissing()
         {
-            var Desaparecidos = new List<string>();
+            var Municipios = new ObservableCollection<Municipio>();
             HtmlDocument document = new HtmlDocument();
             var stream = await new HttpClient().GetStreamAsync("http://sosdesaparecidos.es/");
             document.Load(stream, Encoding.GetEncoding("ISO-8859-1"));
@@ -73,12 +73,37 @@ namespace SOSdesaparecidos.Services.ParseHtml
                 foreach (var item in subjectItem)
                 {
                     var title = item.Descendants("a").FirstOrDefault(x => x.Attributes.Contains("class") && x.Attributes["class"].Value == "submenu_left_link");
-                    Desaparecidos.Add(title.InnerText);
+                    Municipios.Add(new Municipio { Name = title.InnerText, Url = title.Attributes["href"].Value });
                 }
+            }
+            return Municipios;
+        }
+
+
+        public async Task<ObservableCollection<Desaparecido>> GetMunicipioMissing(string URL)
+        {
+            var Desaparecidos = new ObservableCollection<Desaparecido>();
+            HtmlDocument document = new HtmlDocument();
+            var stream = await new HttpClient().GetStringAsync("http://sosdesaparecidos.es"+URL);
+            document.LoadHtml(stream);
+            var container = document.DocumentNode.Descendants("div").Where(x => x.Attributes.Contains("class") && x.Attributes["class"].Value == "galleryStyle mb15").ToList();
+            if (container != null)
+            {
+                foreach (var item in container)
+                {
+                   
+                    var subjectItem = item.Descendants("img").Where(x => x.Attributes.Contains("class") && x.Attributes["class"].Value == "lazy freewall").ToList();
+                    foreach (var desaparecido in subjectItem)
+                    {
+                        Desaparecidos.Add(new Desaparecido { Id = desaparecido.Attributes["alt"].Value, Image = "http://sosdesaparecidos.es/" + desaparecido.Attributes["data-original"].Value });
+                    }
+
+
+                }
+
             }
             return Desaparecidos;
         }
     }
-
 
 }

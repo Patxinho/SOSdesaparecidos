@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 
 namespace SOSdesaparecidos.Views.Main
 {
-
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainView : MasterDetailPage
     {
         public MainView()
