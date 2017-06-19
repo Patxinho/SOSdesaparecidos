@@ -20,8 +20,10 @@ namespace SOSdesaparecidos.ViewModels.Missing
         private IParseHtmlService _parseHtml;
         private Desaparecido _miss;
         private Municipio _municipio;
-        
-        
+        public ICommand ListCommand => new 
+            Command(async () => await NavigationService.NavigateToAsync<MissingListViewModel>());
+
+       
         public MissingViewModel(IParseHtmlService parseHtml)
         {
             _parseHtml = parseHtml;
@@ -57,7 +59,7 @@ namespace SOSdesaparecidos.ViewModels.Missing
 
                 if (_miss != null)
                 {
-                    NavigationService.NavigateToAsync<Missing.MissingDetailViewModel>();
+                    NavigationService.NavigateToAsync<Missing.MissingDetailViewModel>(_miss);
                 }
             }
         }
@@ -82,7 +84,7 @@ namespace SOSdesaparecidos.ViewModels.Missing
             Municipios = new ObservableCollection<Municipio>();
 
             IsBusy = true;
-            DesaparecidosMenores = await _parseHtml.GetMainMissing("Menores desaparecidos");
+            //DesaparecidosMenores = await _parseHtml.GetMainMissing("Menores desaparecidos");
             Municipios = await _parseHtml.GetListMissing();
             IsBusy = false;
 

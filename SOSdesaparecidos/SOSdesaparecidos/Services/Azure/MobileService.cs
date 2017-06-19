@@ -18,153 +18,42 @@ namespace SOSdesaparecidos.Services.Azure
     public class MobileService : Azure.IMobileService
     {
         private MobileServiceClient _client;
-        private IMobileServiceSyncTable<Desaparecido> _desaparecidoItemTable;
+        private IMobileServiceTable<Desaparecido> _desaparecidoItemTable;
+
+        public MobileServiceClient Client
+        {
+            get { return _client; }
+        }
 
         public MobileService()
         {
+            if (_client != null)
+                return;
             _client = new MobileServiceClient(GlobalSettings.AzureUrl);
+            _desaparecidoItemTable = _client.GetTable<Desaparecido>();
         }
 
-        private async Task InitializeAsync()
+        public Task<IEnumerable<Desaparecido>> ReadItemsAsync()
         {
-            if (_desaparecidoItemTable != null)
-                return;
-
-            // Inicialización de SQLite local
-            var store = new MobileServiceSQLiteStore(GlobalSettings.Database);
-            store.DefineTable<Desaparecido>();
-
-            await _client.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
-            _desaparecidoItemTable = _client.GetSyncTable<Desaparecido>();
-
-            // Limpiar registros offline.
-            await _desaparecidoItemTable.PurgeAsync(true);
+            return _desaparecidoItemTable.ReadAsync();
         }
 
-        public async Task<IEnumerable<Desaparecido>> ReadItemsAsync()
+        public async Task AddOrUpdateItemAsync(Desaparecido Item)
         {
-            await InitializeAsync();
-            await SynchronizeAsync();
-            return await _desaparecidoItemTable.ToEnumerableAsync();
-        }
-
-        public async Task AddOrUpdateItemAsync(Desaparecido desaparecido)
-        {
-            await InitializeAsync();
-
-            if (string.IsNullOrEmpty(desaparecido.Id))
+            if (string.IsNullOrEmpty(Item.Id))
             {
-                await _desaparecidoItemTable.InsertAsync(desaparecido);
+                await _desaparecidoItemTable.InsertAsync(Item);
             }
             else
             {
-                await _desaparecidoItemTable.UpdateAsync(desaparecido);
+                await _desaparecidoItemTable.UpdateAsync(Item);
             }
-
-            await SynchronizeAsync();
         }
 
-        public async Task DeleteItemAsync(Desaparecido desaparecido)
+        public async Task DeleteItemAsync(Desaparecido Item)
         {
-            await InitializeAsync();
-
-            await _desaparecidoItemTable.DeleteAsync(desaparecido);
-
-            await SynchronizeAsync();
+            await _desaparecidoItemTable.DeleteAsync(Item);
         }
 
-        private async Task SynchronizeAsync()
-        {
-            if (!CrossConnectivity.Current.IsConnected)
-                return;
-
-            try
-            {
-                // Subir cambios a la base de datos remota
-                await _client.SyncContext.PushAsync();
-
-                // El primer parámetro es el nombre de la query utilizada intermanente por el client SDK para implementar sync.
-                // Utiliza uno diferente por cada query en la App
-                await _desaparecidoItemTable.PullAsync($"all{nameof(Desaparecido)}", _desaparecidoItemTable.CreateQuery());
-            }
-            catch (MobileServicePushFailedException ex)
-            {
-                if (ex.PushResult.Status == MobileServicePushStatus.CancelledByAuthenticationError)
-                {
-                    await LoginAsync();
-                    await SynchronizeAsync();
-                    return;
-                }
-
-                if (ex.PushResult != null)
-                    foreach (var result in ex.PushResult.Errors)
-                        await ResolveErrorAsync(result);
-            }
-            catch (MobileServiceInvalidOperationException ex)
-            {
-                if (ex.Response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    await LoginAsync();
-                    await SynchronizeAsync();
-                    return;
-                }
-
-                throw;
-            }
-        }
-
-        public async Task LoginAsync()
-        {
-            const string userIdKey = ":UserId";
-            const string tokenKey = ":Token";
-
-            if (CrossSecureStorage.Current.HasKey(userIdKey)
-                && CrossSecureStorage.Current.HasKey(tokenKey))
-            {
-                string userId = CrossSecureStorage.Current.GetValue(userIdKey);
-                string token = CrossSecureStorage.Current.GetValue(tokenKey);
-
-                _client.CurrentUser = new MobileServiceUser(userId)
-                {
-                    MobileServiceAuthenticationToken = token
-                };
-
-                return;
-            }
-
-            var authService = DependencyService.Get<IAuthService>();
-            await authService.LoginAsync(_client, MobileServiceAuthenticationProvider.Twitter);
-
-            var user = _client.CurrentUser;
-
-            if (user != null)
-            {
-                CrossSecureStorage.Current.SetValue(userIdKey, user.UserId);
-                CrossSecureStorage.Current.SetValue(tokenKey, user.MobileServiceAuthenticationToken);
-            }
-        }
-
-        private async Task ResolveErrorAsync(MobileServiceTableOperationError result)
-        {
-            // Ignoramos si no podemos validar ambas partes.
-            if (result.Result == null || result.Item == null)
-                return;
-
-            var serverItem = result.Result.ToObject<Desaparecido>();
-            var localItem = result.Item.ToObject<Desaparecido>();
-
-            if (serverItem.Image == localItem.Image
-                && serverItem.Id == localItem.Id)
-            {
-                // Los elementos sin iguales, ignoramos el conflicto
-                await result.CancelAndDiscardItemAsync();
-            }
-            else
-            {
-                // Para nosotros, gana el cliente
-               // localItem.AzureVersion = serverItem.AzureVersion;
-                await result.UpdateOperationAsync(JObject.FromObject(localItem));
-            }
-        }
     }
 }

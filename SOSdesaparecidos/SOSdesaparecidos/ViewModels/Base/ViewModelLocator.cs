@@ -38,6 +38,7 @@ namespace SOSdesaparecidos.ViewModels.Base
             _unityContainer.RegisterType<MissingViewModel>();
             _unityContainer.RegisterType<ContactViewModel>();
             _unityContainer.RegisterType<MissingDetailViewModel>();
+            _unityContainer.RegisterType<MissingListViewModel>();
 
 
             // Services     

@@ -9,11 +9,12 @@ namespace SOSdesaparecidos.Models
 {
     public class Desaparecido
     {
-        public string Id { get; set; }
+        public string Id_foto { get; set; }
 
         public string Image { get; set; }
 
-        [Version]
-        public string AzureVersion { get; set; }
+        public string Id { get; set; }
+
+
     }
 }

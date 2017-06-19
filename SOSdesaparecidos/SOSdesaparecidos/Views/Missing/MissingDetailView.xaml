@@ -7,11 +7,12 @@
         <ToolbarItem
             Name="Añadir"
             Icon="add"
+            Command="{Binding SaveCommand}"
             />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
+            <Image Source="{Binding Desapa.Image}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

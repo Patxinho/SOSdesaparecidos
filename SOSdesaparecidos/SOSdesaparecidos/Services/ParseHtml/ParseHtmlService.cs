@@ -32,19 +32,19 @@ namespace SOSdesaparecidos.Services.ParseHtml
                             case "Menores desaparecidos":
                                 foreach (var desaparecido in subjectItem)
                                 {
-                                    Desaparecidos.Add(new Desaparecido { Id = desaparecido.Attributes["alt"].Value, Image = "http://sosdesaparecidos.es/" + desaparecido.Attributes["data-original"].Value });
+                                    Desaparecidos.Add(new Desaparecido { Id_foto = desaparecido.Attributes["alt"].Value, Image = "http://sosdesaparecidos.es/" + desaparecido.Attributes["data-original"].Value });
                                 }
                                 break;
                             case "Mayores desaparecidos":
                                 foreach (var desaparecido in subjectItem)
                                 {
-                                    Desaparecidos.Add(new Desaparecido { Id = desaparecido.Attributes["alt"].Value, Image = "http://sosdesaparecidos.es/" + desaparecido.Attributes["data-original"].Value });
+                                    Desaparecidos.Add(new Desaparecido { Id_foto = desaparecido.Attributes["alt"].Value, Image = "http://sosdesaparecidos.es/" + desaparecido.Attributes["data-original"].Value });
                                 }
                                 break;
                             case "Adultos desaparecidos":
                                 foreach (var desaparecido in subjectItem)
                                 {
-                                    Desaparecidos.Add(new Desaparecido { Id = desaparecido.Attributes["alt"].Value, Image = "http://sosdesaparecidos.es/" + desaparecido.Attributes["data-original"].Value });
+                                    Desaparecidos.Add(new Desaparecido { Id_foto = desaparecido.Attributes["alt"].Value, Image = "http://sosdesaparecidos.es/" + desaparecido.Attributes["data-original"].Value });
                                 }
                                 break;
                             default:
@@ -95,7 +95,7 @@ namespace SOSdesaparecidos.Services.ParseHtml
                     var subjectItem = item.Descendants("img").Where(x => x.Attributes.Contains("class") && x.Attributes["class"].Value == "lazy freewall").ToList();
                     foreach (var desaparecido in subjectItem)
                     {
-                        Desaparecidos.Add(new Desaparecido { Id = desaparecido.Attributes["alt"].Value, Image = "http://sosdesaparecidos.es/" + desaparecido.Attributes["data-original"].Value });
+                        Desaparecidos.Add(new Desaparecido { Id_foto = desaparecido.Attributes["alt"].Value, Image = "http://sosdesaparecidos.es/" + desaparecido.Attributes["data-original"].Value });
                     }
 
 

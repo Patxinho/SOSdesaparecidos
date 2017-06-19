@@ -48,15 +48,18 @@ namespace SOSdesaparecidos.Azure.Backend
     {
         protected override void Seed(MobileServiceContext context)
         {
-            List<TodoItem> todoItems = new List<TodoItem>
+           
+
+            List<Desaparecido> todoDes= new List<Desaparecido>
             {
-                new TodoItem { Id = Guid.NewGuid().ToString(), Text = "First item", Complete = false },
-                new TodoItem { Id = Guid.NewGuid().ToString(), Text = "Second item", Complete = false }
+                new Desaparecido { Id = Guid.NewGuid().ToString(), Image = "First item",  Id_foto = "www.sosdesaparecidos.com/user_images/thumb428498be6925ac2b774733ac0558043e552843.jpg" },
+                new Desaparecido { Id = Guid.NewGuid().ToString(), Image = "Second item", Id_foto = "www.sosdesaparecidos.com/user_images/thumb428498be6925ac2b774733ac0558043e552843.jpg" }
             };
 
-            foreach (TodoItem todoItem in todoItems)
+
+            foreach (Desaparecido todoItem in todoDes)
             {
-                context.Set<TodoItem>().Add(todoItem);
+                context.Set<Desaparecido>().Add(todoItem);
             }
 
             base.Seed(context);

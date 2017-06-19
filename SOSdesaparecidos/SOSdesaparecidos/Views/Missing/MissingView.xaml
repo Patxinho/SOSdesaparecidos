@@ -9,6 +9,7 @@
         <ToolbarItem
             Name="Fav"
             Icon="favourite"
+             Command="{Binding ListCommand}"
             />
     </ContentPage.ToolbarItems>
     <Grid RowSpacing="0">

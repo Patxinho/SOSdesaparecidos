@@ -12,7 +12,7 @@ using System.Web.Http.OData;
 
 namespace SOSdesaparecidos.Azure.Backend.Controllers
 {
-    [Authorize]
+    
     public class DesaparecidoController : TableController<Desaparecido>
     {
         protected override void Initialize(HttpControllerContext controllerContext)

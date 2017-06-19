@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SOSdesaparecidos.Views.Missing.MissingListView"
+             Title="Mis Desaparecidos">
+    <ContentPage.Content>
+        <ListView Grid.Row="1"
+	           
+	            ItemsSource="{Binding Desapa}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame
+            OutlineColor="{StaticResource GrayColor}"
+            BackgroundColor="{StaticResource WhiteColor}"
+            Margin="12">
+                            <Frame.HasShadow>
+                                <OnPlatform                       
+                    x:TypeArguments="x:Boolean"
+                    iOS="False"
+                    Android="True"
+                    WinPhone="False"/>
+                            </Frame.HasShadow>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="300" />
+
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding Image}" Aspect="AspectFit"/>
+
+
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

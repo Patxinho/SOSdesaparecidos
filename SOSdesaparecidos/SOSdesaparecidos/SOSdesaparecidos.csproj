@@ -78,6 +78,7 @@
     <Compile Include="ViewModels\Main\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\Main\MainViewModel.cs" />
     <Compile Include="ViewModels\Missing\MissingDetailViewModel.cs" />
+    <Compile Include="ViewModels\Missing\MissingListViewModel.cs" />
     <Compile Include="ViewModels\Missing\MissingViewModel.cs" />
     <Compile Include="ViewModels\News\NewsViewModel.cs" />
     <Compile Include="Views\Base\CustomNavigationPage.xaml.cs">
@@ -103,6 +104,9 @@
     </Compile>
     <Compile Include="Views\Missing\MissingDetailView.xaml.cs">
       <DependentUpon>MissingDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Missing\MissingListView.xaml.cs">
+      <DependentUpon>MissingListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Missing\MissingView.xaml.cs">
       <DependentUpon>MissingView.xaml</DependentUpon>
@@ -291,6 +295,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Missing\MissingDetailView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Missing\MissingListView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

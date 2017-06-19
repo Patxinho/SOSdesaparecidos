@@ -26,7 +26,7 @@ namespace SOSdesaparecidos.Azure.Backend.Models
         {
         }
 
-        public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<Desaparecido> Desaparecidos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -19,7 +19,7 @@ namespace SOSdesaparecidos.Services.Azure
         Task DeleteItemAsync(Desaparecido Item);
 
 
-        Task LoginAsync();
+    
 
         
 
